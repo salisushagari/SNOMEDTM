@@ -1,0 +1,1 @@
+Add synthesised sentences here from SNOMED-CT and MedDRA
