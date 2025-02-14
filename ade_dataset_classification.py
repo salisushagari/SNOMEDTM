@@ -8,23 +8,13 @@ from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_sc
 
 
 # 1. Load ADE dataset
-#dataset = load_dataset("clinc/clinc_oos")
 dataset = load_dataset('ade-benchmark-corpus/ade_corpus_v2', 'Ade_corpus_v2_classification')
-#dataset = load_dataset('ade-benchmark-corpus/ade_corpus_v2', 'Ade_corpus_v2_drug_ade_relation')
-print(dataset)
+
 # 2. Load custom SNOMEDTM model and tokenizer
-#tokenizer = PreTrainedTokenizerFast.from_pretrained("./path/to/snomedtm-tokenizer")
+
 tokenizer = AutoTokenizer.from_pretrained("bert-base-uncased")
 
-num_labels = 2
-
-#model = AutoModelForSequenceClassification.from_pretrained("./SNOMEDTM")
-model = AutoModelForSequenceClassification.from_pretrained(
-    "bert-base-uncased",  # or another appropriate base model   allenai/scibert_scivocab_cased
-    num_labels=num_labels,
-    #state_dict=model_state_dict
-)
-
+model = AutoModelForSequenceClassification.from_pretrained("./SNOMEDTM")
 train_test_split = dataset["train"].train_test_split(test_size=0.2)
 train_dataset = train_test_split["train"]
 test_dataset = train_test_split["test"]
